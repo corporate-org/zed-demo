@@ -8,7 +8,14 @@ pipeline:
       - bash -c "[[ \"${DRONE_COMMIT_REF}\" == \"refs/tags/\"* ]] && echo \"${DRONE_COMMIT_REF#refs/tags/}\" > .tags"
     when:
       event: [tag]
-
+      
+  spryker-tests:
+    image: bash
+    commands:
+      - echo "Hello Spryker Tests have been run!"
+    when:
+      event: [tag]
+      
   # This step builds the image and pushes it to the registry.
   # Drone is configured to use the Walhall registry by default, so no need to change anything.
   build-docker-image-tag:
