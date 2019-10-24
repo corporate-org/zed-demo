@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  zed:
+    build: .
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - zeddb
+    environment:
+#      DATABASE_HOST: zeddb
+#      DATABASE_NAME: zed
+#      DATABASE_USER: zed_robot
+#      DATABASE_PASSWORD: "z3dr0b0t"
+      DATABASE_HOST: zeddb
+      DATABASE_NAME: notices
+      DATABASE_USER: notices_robot
+      DATABASE_PASSWORD: "n0t!c3s"
+      REDISHOST: zedredis
+
+  zeddb:
+    image: postgres:11
+
+    volumes:
+      - ./devdatabase/volume:/var/lib/postgresql/data
+    expose:
+      - "5432"
+
+    environment:
+      POSTGRES_PASSWORD: pgsqlDev01
+
+  zedredis:
+    image: redis
+    expose:
+      - 6379
