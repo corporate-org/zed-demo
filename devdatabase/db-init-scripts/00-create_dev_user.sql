@@ -1,0 +1,4 @@
+
+CREATE USER zed_robot WITH PASSWORD 'z3dr0b0t';
+
+CREATE DATABASE zed OWNER zed_robot;
